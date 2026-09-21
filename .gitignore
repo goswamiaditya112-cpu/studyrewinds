@@ -1,0 +1,135 @@
+# ==============================================================================
+# StudyRewind — Complete Project .gitignore
+# ==============================================================================
+
+# --- Python & Virtual Environments ---
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+env.bak/
+venv.bak/
+
+# --- Environment Secrets & Credentials ---
+# Never commit credentials or local secrets
+.env
+.env.*
+!.env.example
+*.env
+
+# --- Testing & Quality Assurance ---
+.pytest_cache/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+htmlcov/
+.tox/
+.nox/
+.hypothesis/
+.mypy_cache/
+.ruff_cache/
+
+# --- Local Project Storage & Media ---
+# User uploaded documents and transient media files
+backend/storage/
+storage/
+uploads/
+*.pdf
+!docs/*.pdf
+
+# Audio/Video temporary files & recordings
+*.mp4
+*.m4a
+*.webm
+*.opus
+*.mp3
+*.wav
+*.vtt
+*.srt
+Recording*
+
+# --- Scratch & Debugging Scripts ---
+# One-off diagnostic scripts and logs
+scratch/
+*.log
+
+# --- Frontend (Node / React / Vite) ---
+node_modules/
+frontend/node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Vite / React build outputs
+dist/
+dist-ssr/
+frontend/dist/
+*.local
+
+# Editor / Framework caches
+.eslintcache
+.stylelintcache
+.vite/
+frontend/.vite/
+
+# --- IDEs & Operating System Artifacts ---
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+*.code-workspace
+
+# JetBrains (PyCharm, WebStorm)
+.idea/
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+ehthumbs_vista.db
+*.stackdump
+[Dd]esktop.ini
+$RECYCLE.BIN/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Linux
+*~
+.fuse_hidden*
+.directory
