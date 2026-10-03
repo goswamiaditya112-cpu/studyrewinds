@@ -4,6 +4,16 @@
 
 ---
 
+## ðŸ“º Project Demo Video
+
+Click below to watch the live demonstration of StudyRewind in action:
+
+[![StudyRewind Demo Video](https://img.youtube.com/vi/5xIW6lkczRc/maxresdefault.jpg)](https://youtu.be/5xIW6lkczRc)
+
+> **[â–¶ Watch Live Demo on YouTube](https://youtu.be/5xIW6lkczRc)**
+
+---
+
 ## Phase 1: Foundation & Database Layer (Frozen)
 
 - Modular FastAPI backend foundation.
@@ -17,6 +27,7 @@
 ## Phase 2: Authentication & User Security
 
 Phase 2 establishes a secure, local-first authentication system and identity layer:
+
 - **Password Hashing**: Secure Argon2id password hashing via `argon2-cffi` (RFC 9106 recommended).
 - **JWT Bearer Authentication**: Signed JSON Web Tokens (`PyJWT`, HS256) loaded from environment configuration (`JWT_SECRET_KEY`).
 - **User Ownership Foundation**: Reusable FastAPI dependency `get_current_user` resolving token `sub` (User UUID) against PostgreSQL.
@@ -24,14 +35,14 @@ Phase 2 establishes a secure, local-first authentication system and identity lay
 
 ### Authentication Endpoints
 
-| Method | Endpoint | Description | Protected |
-| :--- | :--- | :--- | :--- |
-| `POST` | `/api/auth/register` | Register a new user (email, password >= 8 chars). Rejects duplicates (409). | No |
-| `POST` | `/api/auth/login` | Log in and receive a signed Bearer JWT access token. | No |
-| `GET` | `/api/auth/me` | Fetch authenticated user profile (`id`, `email`, `created_at`). | Yes (Bearer JWT) |
-| `POST` | `/api/auth/logout` | Discard user session. | No |
+| Method | Endpoint             | Description                                                                 | Protected        |
+| :----- | :------------------- | :-------------------------------------------------------------------------- | :--------------- |
+| `POST` | `/api/auth/register` | Register a new user (email, password >= 8 chars). Rejects duplicates (409). | No               |
+| `POST` | `/api/auth/login`    | Log in and receive a signed Bearer JWT access token.                        | No               |
+| `GET`  | `/api/auth/me`       | Fetch authenticated user profile (`id`, `email`, `created_at`).             | Yes (Bearer JWT) |
+| `POST` | `/api/auth/logout`   | Discard user session.                                                       | No               |
 
-*(Note: Endpoints are also aliased under `/api/v1/auth/*` for frontend compatibility).*
+_(Note: Endpoints are also aliased under `/api/v1/auth/_` for frontend compatibility).\*
 
 ---
 
@@ -40,50 +51,50 @@ Phase 2 establishes a secure, local-first authentication system and identity lay
 ```text
 studyrewinds/
 +-- backend/
-¦   +-- alembic/
-¦   ¦   +-- versions/
-¦   ¦   ¦   +-- 001_initial_schema.py   # Initial migration for tables & pgvector
-¦   ¦   +-- env.py                      # Dynamic migration environment
-¦   ¦   +-- script.py.mako              # Migration template
-¦   +-- app/
-¦   ¦   +-- api/                        # API route controllers
-¦   ¦   ¦   +-- auth.py                 # Phase 2: Registration, login, /me, logout
-¦   ¦   ¦   +-- deps.py                 # Phase 2: get_current_user dependency
-¦   ¦   +-- core/
-¦   ¦   ¦   +-- config.py               # Settings (JWT_SECRET_KEY, DATABASE_URL)
-¦   ¦   ¦   +-- security.py             # Phase 2: Argon2id hashing & JWT encode/decode
-¦   ¦   +-- db/
-¦   ¦   ¦   +-- base.py                 # DeclarativeBase
-¦   ¦   ¦   +-- session.py              # Engine & SessionLocal
-¦   ¦   +-- models/                     # SQLAlchemy ORM models
-¦   ¦   ¦   +-- user.py                 # users table
-¦   ¦   ¦   +-- subject.py              # subjects table
-¦   ¦   ¦   +-- playlist.py             # playlists table
-¦   ¦   ¦   +-- video.py                # videos table
-¦   ¦   ¦   +-- document.py             # documents table
-¦   ¦   ¦   +-- chunk.py                # transcript_chunks & document_chunks (vector 384)
-¦   ¦   +-- schemas/                    # Pydantic validation schemas
-¦   ¦   ¦   +-- auth.py                 # Phase 2: UserRegisterRequest, UserLoginRequest, UserResponse, TokenResponse
-¦   ¦   +-- main.py                     # FastAPI entrypoint (/health, /health/db, /api/auth)
-¦   +-- tests/
-¦   ¦   +-- conftest.py                 # Fixtures & automated test-db migration runner
-¦   ¦   +-- test_auth.py                # Phase 2: 15 Auth & Security test cases
-¦   ¦   +-- test_health.py              # Health endpoints tests
-¦   ¦   +-- test_schema.py              # Foreign keys, cascades & uniqueness tests
-¦   ¦   +-- test_pgvector.py            # 384-dim vector insertion & cosine distance tests
-¦   ¦   +-- verify_clean_db_migration.py # Standalone clean DB verification script
-¦   +-- alembic.ini                     # Alembic configuration
-¦   +-- requirements.txt                # Python dependencies
+ï¿½   +-- alembic/
+ï¿½   ï¿½   +-- versions/
+ï¿½   ï¿½   ï¿½   +-- 001_initial_schema.py   # Initial migration for tables & pgvector
+ï¿½   ï¿½   +-- env.py                      # Dynamic migration environment
+ï¿½   ï¿½   +-- script.py.mako              # Migration template
+ï¿½   +-- app/
+ï¿½   ï¿½   +-- api/                        # API route controllers
+ï¿½   ï¿½   ï¿½   +-- auth.py                 # Phase 2: Registration, login, /me, logout
+ï¿½   ï¿½   ï¿½   +-- deps.py                 # Phase 2: get_current_user dependency
+ï¿½   ï¿½   +-- core/
+ï¿½   ï¿½   ï¿½   +-- config.py               # Settings (JWT_SECRET_KEY, DATABASE_URL)
+ï¿½   ï¿½   ï¿½   +-- security.py             # Phase 2: Argon2id hashing & JWT encode/decode
+ï¿½   ï¿½   +-- db/
+ï¿½   ï¿½   ï¿½   +-- base.py                 # DeclarativeBase
+ï¿½   ï¿½   ï¿½   +-- session.py              # Engine & SessionLocal
+ï¿½   ï¿½   +-- models/                     # SQLAlchemy ORM models
+ï¿½   ï¿½   ï¿½   +-- user.py                 # users table
+ï¿½   ï¿½   ï¿½   +-- subject.py              # subjects table
+ï¿½   ï¿½   ï¿½   +-- playlist.py             # playlists table
+ï¿½   ï¿½   ï¿½   +-- video.py                # videos table
+ï¿½   ï¿½   ï¿½   +-- document.py             # documents table
+ï¿½   ï¿½   ï¿½   +-- chunk.py                # transcript_chunks & document_chunks (vector 384)
+ï¿½   ï¿½   +-- schemas/                    # Pydantic validation schemas
+ï¿½   ï¿½   ï¿½   +-- auth.py                 # Phase 2: UserRegisterRequest, UserLoginRequest, UserResponse, TokenResponse
+ï¿½   ï¿½   +-- main.py                     # FastAPI entrypoint (/health, /health/db, /api/auth)
+ï¿½   +-- tests/
+ï¿½   ï¿½   +-- conftest.py                 # Fixtures & automated test-db migration runner
+ï¿½   ï¿½   +-- test_auth.py                # Phase 2: 15 Auth & Security test cases
+ï¿½   ï¿½   +-- test_health.py              # Health endpoints tests
+ï¿½   ï¿½   +-- test_schema.py              # Foreign keys, cascades & uniqueness tests
+ï¿½   ï¿½   +-- test_pgvector.py            # 384-dim vector insertion & cosine distance tests
+ï¿½   ï¿½   +-- verify_clean_db_migration.py # Standalone clean DB verification script
+ï¿½   +-- alembic.ini                     # Alembic configuration
+ï¿½   +-- requirements.txt                # Python dependencies
 +-- frontend/                           # Preserved React + TypeScript + Vite frontend
-¦   +-- public/
-¦   ¦   +-- logo.png                    # Official StudyRewind Logo
-¦   +-- src/
-¦   ¦   +-- components/brand/
-¦   ¦   ¦   +-- StudyRewindLogo.tsx     # Official logo component
-¦   ¦   +-- App.tsx                     # Existing UI with auth token persistence
-¦   ¦   +-- styles.css                  # Existing styles & design system
-¦   +-- package.json
-¦   +-- vite.config.ts
+ï¿½   +-- public/
+ï¿½   ï¿½   +-- logo.png                    # Official StudyRewind Logo
+ï¿½   +-- src/
+ï¿½   ï¿½   +-- components/brand/
+ï¿½   ï¿½   ï¿½   +-- StudyRewindLogo.tsx     # Official logo component
+ï¿½   ï¿½   +-- App.tsx                     # Existing UI with auth token persistence
+ï¿½   ï¿½   +-- styles.css                  # Existing styles & design system
+ï¿½   +-- package.json
+ï¿½   +-- vite.config.ts
 +-- .env.example                        # Template environment variables
 +-- .gitignore                          # Excludes secrets, venvs, and cache
 +-- README.md                           # Documentation
@@ -94,6 +105,7 @@ studyrewinds/
 ## Environment Configuration
 
 In `.env`:
+
 ```ini
 PROJECT_NAME="StudyRewinds"
 ENV="development"
@@ -113,20 +125,25 @@ JWT_ACCESS_TOKEN_EXPIRE_MINUTES=1440
 ## Running the Application
 
 ### 1. Start the Backend API
+
 ```powershell
 $env:PYTHONPATH="backend"
 .\venv\Scripts\python.exe -m uvicorn app.main:app --reload --host 127.0.0.1 --port 8000
 ```
+
 Interactive Swagger UI: `http://127.0.0.1:8000/docs`
 
 ### 2. Start the React Frontend
+
 ```powershell
 cd frontend
 npm run dev
 ```
+
 Access frontend: `http://localhost:5173`
 
 ### 3. Running Automated Tests
+
 ```powershell
 $env:PYTHONPATH="backend"
 .\venv\Scripts\python.exe -m pytest -v backend/tests
