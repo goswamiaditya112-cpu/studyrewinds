@@ -14,7 +14,7 @@ Click below to watch the live demonstration of StudyRewind in action:
 
 ---
 
-## Phase 1: Foundation & Database Layer (Frozen)
+## Phase 1: Foundation & Database Layer 
 
 - Modular FastAPI backend foundation.
 - PostgreSQL integration with the `pgvector` extension.
